@@ -1,0 +1,23 @@
+.form-button {
+    --form-button-bg-color: #123776;
+    --form-button-bg-color-hover: #17499d;
+    --form-button-text-color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border: none;
+    background-color: var(--form-button-bg-color);
+    padding: .7rem 1rem;
+    border-radius: .25rem;
+    cursor: pointer;
+    transition: background-color .2s;
+    font-size: 1rem;
+    color: var(--form-button-text-color);
+    font-family: var(--font-family-comfortaa-medium);
+
+    &:hover {
+        background-color: var(--form-button-bg-color-hover);
+    }
+}

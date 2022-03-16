@@ -1,0 +1,72 @@
+.header {
+    --header-link-marker:#123776;
+    --header-link-color: #123776;
+    --header-border: 1px solid #e6e6e6;
+    --header-box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+                         rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    --header-button-border: 2px solid #b3b3b3;
+    --header-bg-color: white;
+
+    position: relative;
+    height: 3.5rem;
+    z-index: 2;
+
+    &__inner {
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: var(--header-bg-color);
+        border: var(--header-border);
+        padding: 0 1rem;
+    }
+
+    &__logo {
+
+        &__text {
+            font-size: 1.2rem;
+            font-family: var(--font-family-comfortaa-bold);
+            padding: .5rem;
+        }
+    }
+
+    &__button {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: .5rem 1rem;
+        font-family: var(--font-family-comfortaa-bold);
+        border: var(--header-button-border);
+        border-radius: .25rem;
+        margin: .5rem;
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        box-shadow: var(--header-box-shadow);
+        z-index: -1;
+    }
+
+    &__date {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+
+        &__date {
+            font-size: 1rem;
+            font-family: var(--font-family-comfortaa-bold);
+        }
+
+        &__time {
+            font-size: .9rem;
+            font-family: var(--font-family-comfortaa-semibold);
+        }
+    }
+}

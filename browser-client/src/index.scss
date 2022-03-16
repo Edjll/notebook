@@ -1,0 +1,53 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-color);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+@font-face {
+  font-family: "Comfortaa-Light";
+  src: url("./fonts/Comfortaa-Light.ttf");
+}
+
+@font-face {
+  font-family: "Comfortaa-Bold";
+  src: url("./fonts/Comfortaa-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Comfortaa-Medium";
+  src: url("./fonts/Comfortaa-Medium.ttf");
+}
+
+@font-face {
+  font-family: "Comfortaa-Regular";
+  src: url("./fonts/Comfortaa-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Comfortaa-SemiBold";
+  src: url("./fonts/Comfortaa-SemiBold.ttf");
+}
+
+:root {
+  --font-family-comfortaa-light: "Comfortaa-Light";
+  --font-family-comfortaa-bold: "Comfortaa-Bold";
+  --font-family-comfortaa-medium: "Comfortaa-Medium";
+  --font-family-comfortaa-regular: "Comfortaa-Regular";
+  --font-family-comfortaa-semibold: "Comfortaa-SemiBold";
+
+  --profile-sidebar-link-color: #123776;
+  --profile-sidebar-button-color: #761221;
+  --profile-sidebar-button-hover-color: #9d1723;
+
+  --bg-color: #f3f3f3;
+}
