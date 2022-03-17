@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.*;
 import ru.sstu.notepad.model.RecordBody;
 import ru.sstu.notepad.service.RecordService;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(ApiConstants.RECORDS)
 @RequiredArgsConstructor
@@ -13,7 +15,7 @@ public class RecordController {
     private final RecordService recordService;
 
     @PostMapping
-    public void create(@RequestBody RecordBody body) {
+    public void create(@RequestBody @Valid RecordBody body) {
         recordService.create(body);
     }
 
