@@ -3,7 +3,7 @@ package ru.sstu.notepad.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import ru.sstu.notepad.model.record.RecordBody;
+import ru.sstu.notepad.model.tag.TagBody;
 
 import java.io.BufferedOutputStream;
 import java.io.DataOutputStream;
@@ -15,14 +15,14 @@ import java.io.IOException;
 public class ExportService {
     @Value("${export.filename}")
     private String filename;
-    private final RecordService recordService;
+    private final TagService tagService;
 
     public String export() throws IOException {
         String workingDir = System.getProperty("user.dir");
         FileOutputStream fos = new FileOutputStream(filename);
         try (DataOutputStream outStream = new DataOutputStream(new BufferedOutputStream(fos));) {
-            outStream.writeUTF(recordService.getAll().stream()
-                    .map(RecordBody::toString)
+            outStream.writeUTF(tagService.getAll().stream()
+                    .map(TagBody::toString)
                     .reduce((s, s2) -> s + " " + s2)
                     .orElse(""));
         }

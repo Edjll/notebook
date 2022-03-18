@@ -6,12 +6,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.server.ResponseStatusException;
+import ru.sstu.notepad.entity.Record;
 import ru.sstu.notepad.entity.Tag;
-import ru.sstu.notepad.model.TagBody;
+import ru.sstu.notepad.mapper.TagMapper;
+import ru.sstu.notepad.model.tag.TagBody;
+import ru.sstu.notepad.model.tag.TagBodyToSave;
 import ru.sstu.notepad.repository.TagRepository;
 
-import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -22,19 +25,31 @@ import static ru.sstu.notepad.mapper.TagMapper.MAPPER;
 public class TagService {
 
     private final TagRepository repository;
+    private final RecordService recordService;
 
-    public void create(TagBody body) {
-        repository.save(MAPPER.toEntity(body));
-    }
+    public void create(TagBodyToSave body) {
+        Tag tag;
+        Set<Record> records = null;
 
-    @Transactional
-    public void update(Long id, TagBody body) {
-        if (!repository.existsById(id))
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        Tag tag =  MAPPER.toEntity(body);
-        tag.setId(id);
+        if(!CollectionUtils.isEmpty(body.getRecordIds())){
+            records = recordService.getRecords(body.getRecordIds());
+        }
+
+        if (body.getId() != null){
+            Optional<Tag> tagEntity = repository.findById(body.getId());
+            if(tagEntity.isPresent()){
+                tag = TagMapper.MAPPER.toEntity(body, tagEntity.get(), records);
+            }else {
+                throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, String.format("Не найдена вкладка с id = %d", body.getId()));
+            }
+        }else{
+            tag = TagMapper.MAPPER.toEntity(body, records);
+        }
+
         repository.save(tag);
     }
+
+
 
     @Transactional
     public void delete(Long id) {
@@ -44,12 +59,7 @@ public class TagService {
         repository.deleteById(id);
     }
 
-    public Set<Tag> getTags(Set<Long> ids) {
-        if(CollectionUtils.isEmpty(ids)){
-            return new HashSet<>();
-        }
-        return new HashSet<>(repository.findAllById(ids));
-    }
+
 
     @Transactional
     public List<TagBody> getAll() {

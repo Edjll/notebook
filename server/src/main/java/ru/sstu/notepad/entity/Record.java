@@ -1,16 +1,15 @@
 package ru.sstu.notepad.entity;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import ru.sstu.notepad.model.record.PriorityType;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Set;
 
 @Entity
 @Data
+@ToString
 public class Record {
 
     @Id
@@ -36,12 +35,5 @@ public class Record {
     @Column(name = "status_active")
     private boolean statusActive;
 
-    @ManyToMany
-    @JoinTable(
-            joinColumns = @JoinColumn(name = "record_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "tag_id", referencedColumnName = "id")
-    )
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
-    private Set<Tag> tags;
+
 }

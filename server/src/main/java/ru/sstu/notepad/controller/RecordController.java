@@ -3,7 +3,6 @@ package ru.sstu.notepad.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.sstu.notepad.model.record.RecordBody;
-import ru.sstu.notepad.model.record.RecordBodyToSave;
 import ru.sstu.notepad.service.RecordService;
 
 import javax.validation.Valid;
@@ -27,7 +26,7 @@ public class RecordController {
     }
 
     @PostMapping
-    public void save(@RequestBody @Valid RecordBodyToSave body) {
+    public void save(@RequestBody @Valid RecordBody body) {
         recordService.save(body);
     }
 

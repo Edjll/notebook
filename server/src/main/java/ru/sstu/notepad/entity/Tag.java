@@ -1,8 +1,11 @@
 package ru.sstu.notepad.entity;
 
-import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Data
@@ -14,4 +17,13 @@ public class Tag {
 
     @Column(name = "name", nullable = false)
     private String name;
+
+    @ManyToMany
+    @JoinTable(
+            joinColumns = @JoinColumn(name = "record_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id", referencedColumnName = "id")
+    )
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Set<Record> records;
 }
