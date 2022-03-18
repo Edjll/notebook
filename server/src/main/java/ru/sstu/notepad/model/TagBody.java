@@ -1,16 +1,12 @@
 package ru.sstu.notepad.model;
 
 import lombok.Data;
-import ru.sstu.notepad.entity.Tag;
+
+import javax.validation.constraints.NotNull;
 
 @Data
 public class TagBody {
-
+    private Long id;
+    @NotNull(message = "Не заполенено название тега")
     private String name;
-
-    public Tag toTag() {
-        Tag tag = new Tag();
-        tag.setName(name);
-        return tag;
-    }
 }

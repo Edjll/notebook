@@ -3,6 +3,7 @@ package ru.sstu.notepad.entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import ru.sstu.notepad.model.record.PriorityType;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -27,6 +28,13 @@ public class Record {
 
     @Column(name = "end_date", nullable = false)
     private LocalDateTime endDate;
+
+    @Column(name = "priority")
+    @Enumerated(EnumType.STRING)
+    private PriorityType priority;
+
+    @Column(name = "status_active")
+    private boolean statusActive;
 
     @ManyToMany
     @JoinTable(
