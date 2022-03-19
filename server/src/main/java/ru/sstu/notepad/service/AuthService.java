@@ -18,14 +18,19 @@ public class AuthService {
     private String password;
 
     public boolean validateCredentialsInBase64(String userInBase64) {
-        String[] credentials = new String(Base64.getDecoder().decode(userInBase64)).split(":");
-        return credentials.length == 2
-                && username.equals(credentials[0])
-                && password.equals(credentials[1]);
+        try {
+            String[] credentials = new String(Base64.getDecoder().decode(userInBase64)).split(":");
+            return credentials.length == 2
+                    && username.equals(credentials[0])
+                    && password.equals(credentials[1]);
+        }catch (RuntimeException e){
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Не удалось распознать пароль и логин!");
+        }
+
     }
 
     public String login(User user) {
-        if (!username.equals(user.getUsername()) || !password.equals(user.getUsername()))
+        if (!username.equals(user.getUsername()) || !password.equals(user.getPassword()))
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 
         return Base64.getEncoder().encodeToString((username + ":" + password).getBytes());

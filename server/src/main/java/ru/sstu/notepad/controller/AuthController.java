@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.sstu.notepad.model.User;
 import ru.sstu.notepad.service.AuthService;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(ApiConstants.USERS)
 @RequiredArgsConstructor
@@ -17,7 +19,7 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping(ApiConstants.LOGIN)
-    public ResponseEntity<String> login(@RequestBody User user) {
+    public ResponseEntity<String> login(@RequestBody @Valid User user) {
         return ResponseEntity.ok().body(authService.login(user));
     }
 }
