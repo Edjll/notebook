@@ -3,15 +3,9 @@ package ru.sstu.notepad.utils;
 import lombok.experimental.UtilityClass;
 
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 
 @UtilityClass
 public class DataUtils {
-    public static final ZoneId SARATOV_ZONE = ZoneId.of("Europe/Saratov");
-    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ISO_INSTANT.withZone(SARATOV_ZONE);
-
-
     /**
      * <h2>Проверка вхожения первого периода firstDate в secondDate</h2>
      * @param firstStartDate дата начала первого периода
