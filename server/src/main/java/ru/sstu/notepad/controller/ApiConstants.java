@@ -10,6 +10,8 @@ public interface ApiConstants {
     String TAGS = PREFIX + "/tags";
 
     String RECORDS = PREFIX + "/records";
+    String RECORDS_FIND = "/find";
+    String RECORDS_GET_ALL = "/all";
 
     String EXPORT = PREFIX + "/export";
 }

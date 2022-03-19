@@ -42,4 +42,5 @@ public interface RecordMapper {
     RecordBody toDto(Record source);
 
     List<RecordBody> toDtoList(Set<Record> source);
+    List<RecordBody> toDtoList(List<Record> source);
 }

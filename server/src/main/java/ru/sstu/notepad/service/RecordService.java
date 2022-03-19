@@ -11,6 +11,7 @@ import ru.sstu.notepad.model.record.RecordBody;
 import ru.sstu.notepad.repository.RecordRepository;
 import ru.sstu.notepad.utils.DataUtils;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -80,5 +81,9 @@ public class RecordService {
             return new HashSet<>();
         }
         return new HashSet<>(repository.findAllById(ids));
+    }
+
+    public List<RecordBody> findByDate(LocalDateTime startDate, LocalDateTime endDate){
+        return MAPPER.toDtoList(repository.findAllByStartDateIsAfterAndEndDateIsBefore(startDate, endDate));
     }
 }
