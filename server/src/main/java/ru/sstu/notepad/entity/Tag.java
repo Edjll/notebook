@@ -25,5 +25,5 @@ public class Tag {
     )
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    private Set<Record> records;
+    private Set<Task> tasks;
 }

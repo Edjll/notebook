@@ -1,4 +1,4 @@
-package ru.sstu.notepad.model.record;
+package ru.sstu.notepad.model.task;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
@@ -12,7 +12,8 @@ import java.time.LocalDateTime;
 @Data
 @RecordConstraint
 @JsonIgnoreProperties({"correctOrderDateValid"})
-public class RecordBody implements RecordDateValidatable {
+public class TaskBody implements RecordDateValidatable {
+
     private Long id;
 
     @NotBlank(message = "Не заполенен заголовок заметки")
@@ -27,8 +28,5 @@ public class RecordBody implements RecordDateValidatable {
     @NotNull(message = "Не заполенена дата окончания заметки")
     private LocalDateTime endDate;
 
-    @NotNull(message = "Не заполенен приориет заметки")
-    private PriorityType priority;
-
-    private boolean statusActive;
+    private boolean completed = false;
 }

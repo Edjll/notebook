@@ -9,7 +9,11 @@ public interface ApiConstants {
 
     String TAGS = PREFIX + "/tags";
 
-    String RECORDS = PREFIX + "/records";
+    String TASKS = PREFIX + "/tasks";
+    String TASKS_ACTUAL = "/actual";
+    String TASKS_COMPLETED = "/completed";
+    String TASKS_EXPIRED = "/expired";
+
     String RECORDS_FIND = "/find";
     String RECORDS_GET_ALL = "/all";
 

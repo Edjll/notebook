@@ -6,5 +6,5 @@ import java.util.Set;
 
 @Data
 public class TagBodyToSave extends TagBodyCommon{
-    private Set<Long> recordIds;
+    private Set<Long> tasksIds;
 }

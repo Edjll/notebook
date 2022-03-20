@@ -1,7 +1,7 @@
 package ru.sstu.notepad.model.tag;
 
 import lombok.Data;
-import ru.sstu.notepad.model.record.RecordBody;
+import ru.sstu.notepad.model.task.TaskBody;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -12,5 +12,5 @@ public abstract class TagBodyCommon {
     @NotNull(message = "Не заполенено название тега")
     private String name;
 
-    private List<RecordBody> records;
+    private List<TaskBody> tasks;
 }

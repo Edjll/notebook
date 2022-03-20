@@ -2,7 +2,7 @@ package ru.sstu.notepad.model.tag;
 
 import lombok.Data;
 import lombok.ToString;
-import ru.sstu.notepad.model.record.RecordBody;
+import ru.sstu.notepad.model.task.TaskBody;
 
 import java.util.List;
 
@@ -10,5 +10,5 @@ import java.util.List;
 @ToString(callSuper = true)
 public class TagBody extends TagBodyCommon{
 
-    private List<RecordBody> records;
+    private List<TaskBody> tasks;
 }

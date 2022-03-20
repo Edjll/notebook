@@ -13,8 +13,10 @@ import java.io.IOException;
 @Service
 @RequiredArgsConstructor
 public class ExportService {
+
     @Value("${export.filename}")
     private String filename;
+
     private final TagService tagService;
 
     public String export() throws IOException {

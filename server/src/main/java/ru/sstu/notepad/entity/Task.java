@@ -2,7 +2,6 @@ package ru.sstu.notepad.entity;
 
 import lombok.Data;
 import lombok.ToString;
-import ru.sstu.notepad.model.record.PriorityType;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -10,7 +9,7 @@ import java.time.LocalDateTime;
 @Entity
 @Data
 @ToString
-public class Record {
+public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +18,7 @@ public class Record {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 1000)
     private String description;
 
     @Column(name = "start_date", nullable = false)
@@ -28,12 +27,6 @@ public class Record {
     @Column(name = "end_date", nullable = false)
     private LocalDateTime endDate;
 
-    @Column(name = "priority")
-    @Enumerated(EnumType.STRING)
-    private PriorityType priority;
-
-    @Column(name = "status_active")
-    private boolean statusActive;
-
-
+    @Column(name = "completed")
+    private boolean completed;
 }

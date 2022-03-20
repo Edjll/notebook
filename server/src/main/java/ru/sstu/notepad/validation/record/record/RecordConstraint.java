@@ -9,9 +9,12 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy=RecordValidator.class)
+@Constraint(validatedBy = RecordValidator.class)
 public @interface RecordConstraint {
+
     String message() default "{errorMessage}";
+
     Class<?>[] groups() default {};
+
     Class<? extends Payload>[] payload() default {};
 }

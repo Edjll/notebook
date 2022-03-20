@@ -1,4 +1,4 @@
-package ru.sstu.notepad.model.record;
+package ru.sstu.notepad.model.task;
 
 public enum PriorityType {
     STRONG,
