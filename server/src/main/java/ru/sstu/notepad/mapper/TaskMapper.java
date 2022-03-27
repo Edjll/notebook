@@ -8,11 +8,10 @@ import ru.sstu.notepad.entity.Task;
 import ru.sstu.notepad.model.task.TaskBody;
 
 import java.util.List;
-import java.util.Set;
 
 @Mapper
 public interface TaskMapper {
-    TaskMapper MAPPER = Mappers.getMapper(TaskMapper.class);
+    TaskMapper TASK_MAPPER = Mappers.getMapper(TaskMapper.class);
 
     @Mapping(target = "title",          source = "source.title")
     @Mapping(target = "description",    source = "source.description")
@@ -37,6 +36,5 @@ public interface TaskMapper {
     @Mapping(target = "id",             source = "source.id")
     TaskBody toDto(Task source);
 
-    List<TaskBody> toDtoList(Set<Task> source);
     List<TaskBody> toDtoList(List<Task> source);
 }

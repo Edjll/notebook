@@ -1,14 +1,12 @@
 package ru.sstu.notepad.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import ru.sstu.notepad.model.task.TaskBody;
 import ru.sstu.notepad.model.task.TaskStatus;
 import ru.sstu.notepad.service.TaskService;
 
 import javax.validation.Valid;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -38,11 +36,6 @@ public class TaskController {
         return taskService.getExpiredTasks();
     }
 
-    @GetMapping(ApiConstants.RECORDS_GET_ALL)
-    public List<TaskBody> getAll() {
-        return taskService.getAll();
-    }
-
     @PostMapping
     public void save(@RequestBody @Valid TaskBody body) {
         taskService.save(body);
@@ -51,12 +44,6 @@ public class TaskController {
     @PutMapping("/{id}/status")
     public void updateStatus(@PathVariable Long id, @RequestBody TaskStatus taskStatus) {
         taskService.updateStatus(id, taskStatus);
-    }
-
-    @GetMapping(ApiConstants.RECORDS_FIND)
-    public List<TaskBody> find(@RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)  LocalDateTime startDate,
-                               @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate) {
-       return taskService.findByDate(startDate, endDate);
     }
 
     @DeleteMapping("/{id}")

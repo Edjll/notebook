@@ -23,10 +23,9 @@ public class AuthService {
             return credentials.length == 2
                     && username.equals(credentials[0])
                     && password.equals(credentials[1]);
-        }catch (RuntimeException e){
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Не удалось распознать пароль и логин!");
+        } catch (RuntimeException e) {
+            return false;
         }
-
     }
 
     public String login(User user) {

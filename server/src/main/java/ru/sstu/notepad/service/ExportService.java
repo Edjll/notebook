@@ -1,33 +1,57 @@
 package ru.sstu.notepad.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import ru.sstu.notepad.model.tag.TagBody;
+import ru.sstu.notepad.model.note.NoteBody;
+import ru.sstu.notepad.model.task.TaskBody;
 
-import java.io.BufferedOutputStream;
-import java.io.DataOutputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.time.format.DateTimeFormatter;
+import java.util.Formatter;
 
 @Service
 @RequiredArgsConstructor
 public class ExportService {
 
-    @Value("${export.filename}")
-    private String filename;
+    private static final String NOTE_FORMAT = "%20s %20s %20s %20s %20s %20s %20s %n";
+    private static final String TASK_FORMAT = "%20s %20s %20s %20s %20s %20s %n";
 
-    private final TagService tagService;
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("hh:mm:ss dd.MM.yyyy");
 
-    public String export() throws IOException {
-        String workingDir = System.getProperty("user.dir");
-        FileOutputStream fos = new FileOutputStream(filename);
-        try (DataOutputStream outStream = new DataOutputStream(new BufferedOutputStream(fos));) {
-            outStream.writeUTF(tagService.getAll().stream()
-                    .map(TagBody::toString)
-                    .reduce((s, s2) -> s + " " + s2)
-                    .orElse(""));
+    private final NoteService noteService;
+    private final TaskService taskService;
+
+    public byte[] exportNotes() {
+        Formatter formatter = new Formatter();
+        formatter.format(NOTE_FORMAT, "ID", "Заголовок", "Описание", "Дата создания", "Дата изменения", "Приоритет", "Раздел");
+        for (NoteBody noteBody : noteService.getAll(null, null)) {
+            formatter.format(
+                    NOTE_FORMAT,
+                    noteBody.getId(),
+                    noteBody.getTitle(),
+                    noteBody.getDescription(),
+                    noteBody.getCreatedDate().format(DATE_TIME_FORMATTER),
+                    noteBody.getModifiedDate() == null ? "-" : noteBody.getModifiedDate().format(DATE_TIME_FORMATTER),
+                    noteBody.getPriorityBody().getName(),
+                    noteBody.getSectionBody().getName()
+            );
         }
-        return workingDir + "\\" + filename;
+        return formatter.toString().getBytes();
+    }
+
+    public byte[] exportTasks() {
+        Formatter formatter = new Formatter();
+        formatter.format(TASK_FORMAT, "ID", "Заголовок", "Описание", "Дата начала", "Дата окончания", "Выполнена");
+        for (TaskBody taskBody : taskService.getAll()) {
+            formatter.format(
+                    TASK_FORMAT,
+                    taskBody.getId(),
+                    taskBody.getTitle(),
+                    taskBody.getDescription(),
+                    taskBody.getStartDate().format(DATE_TIME_FORMATTER),
+                    taskBody.getEndDate().format(DATE_TIME_FORMATTER),
+                    taskBody.isCompleted()
+            );
+        }
+        return formatter.toString().getBytes();
     }
 }

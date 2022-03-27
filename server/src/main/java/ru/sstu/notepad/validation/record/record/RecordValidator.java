@@ -21,10 +21,10 @@ public class RecordValidator implements ConstraintValidator<RecordConstraint, Ta
     @Override
     public boolean isValid(TaskBody recordBody, ConstraintValidatorContext context) {
         ConstraintValidatorContextImpl constraintValidatorContext = (ConstraintValidatorContextImpl) context;
-        if (taskService.isNotIntersection(recordBody)) {
+        if (taskService.hasIntersection(recordBody)) {
             constraintValidatorContext.addMessageParameter(
                     "errorMessage",
-                    "Даты заметки пересекаются с другими датами заметок!"
+                    "Даты задачи пересекаются с другой задачей"
             );
             return false;
         }

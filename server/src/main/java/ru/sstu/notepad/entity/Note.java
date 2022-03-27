@@ -24,6 +24,14 @@ public class Note {
     @Column(name = "created_date", nullable = false)
     private LocalDateTime createdDate;
 
-    @Column(name = "modified_date", nullable = false)
+    @Column(name = "modified_date")
     private LocalDateTime modifiedDate;
+
+    @ManyToOne
+    @JoinColumn(name = "priority_id", nullable = false)
+    private Priority priority;
+
+    @ManyToOne
+    @JoinColumn(name = "section_id", nullable = false)
+    private Section section;
 }

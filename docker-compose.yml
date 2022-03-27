@@ -1,6 +1,23 @@
 version: "3.9"
 
 services:
+  browser-client:
+    build:
+      context: ./browser-client
+      dockerfile: Dockerfile
+    ports:
+      - '80:80'
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - '8080:8080'
+    command: java -jar app.jar
+    depends_on:
+      - database
+    env_file:
+      - .env
   database:
     image: library/postgres:13.0-alpine
     container_name: database

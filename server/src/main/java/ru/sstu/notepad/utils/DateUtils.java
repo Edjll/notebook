@@ -5,7 +5,7 @@ import lombok.experimental.UtilityClass;
 import java.time.LocalDateTime;
 
 @UtilityClass
-public class DataUtils {
+public class DateUtils {
     /**
      * <h2>Проверка вхожения первого периода firstDate в secondDate</h2>
      * @param firstStartDate дата начала первого периода

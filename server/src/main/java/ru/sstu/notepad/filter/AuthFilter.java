@@ -4,11 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import org.springframework.web.server.ResponseStatusException;
 import ru.sstu.notepad.controller.ApiConstants;
 import ru.sstu.notepad.service.AuthService;
 
-import javax.security.auth.message.AuthException;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -30,8 +28,8 @@ public class AuthFilter extends OncePerRequestFilter {
         if (request.getRequestURI().equals(ApiConstants.USERS + ApiConstants.LOGIN) ||
                 userInBase64 != null && authService.validateCredentialsInBase64(userInBase64)) {
             filterChain.doFilter(request, response);
-        }else{
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Не удалось авторизоваться!");
+        } else {
+            response.setStatus(HttpStatus.FORBIDDEN.value());
         }
     }
 }

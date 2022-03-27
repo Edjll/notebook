@@ -16,8 +16,7 @@ spring:
         persistence:
           validation:
             mode: none
-export:
-  filename: export.txt
+
 user:
   username: ${USER_USERNAME:user}
   password: ${USER_PASSWORD:pass}
