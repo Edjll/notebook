@@ -1,4 +1,4 @@
-import './header.css';
+import './header.scss';
 import {useEffect, useState} from "react";
 
 const Header = () => {

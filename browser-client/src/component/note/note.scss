@@ -1,0 +1,26 @@
+.note {
+  transition: opacity .5s;
+  border-color: #f6c38d;
+  background-color: antiquewhite;
+
+  &_completed {
+    opacity: .8;
+  }
+
+  & .progress-bar {
+    background-color: #852d18;
+  }
+
+  & .card-header {
+    background-color: #fad2a8;
+    border-color: coral;
+  }
+
+  &_important .card-header {
+    background-color: #fabba8;
+  }
+
+  &_common .card-header {
+    background-color: #f9de92;
+  }
+}

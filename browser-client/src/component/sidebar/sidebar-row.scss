@@ -1,0 +1,21 @@
+.sidebar-row {
+    --sidebar-row-border: 1px solid rgba(0, 0, 0, 0.125);
+    transition: background-color .2s;
+
+    & > a, & > span {
+        display: block;
+        text-decoration: none;
+        color: black;
+        cursor: pointer;
+        padding: .5rem 1rem .5rem 2rem;
+        user-select: none;
+    }
+
+    &:not(:last-of-type) {
+        border-bottom: var(--sidebar-row-border);
+    }
+
+    &:hover {
+        background-color: #fabd99;
+    }
+}

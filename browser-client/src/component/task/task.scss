@@ -1,0 +1,18 @@
+.task {
+  transition: opacity .5s;
+  border-color: #f6c38d;
+  background-color: antiquewhite;
+
+  &_completed {
+    opacity: .8;
+  }
+
+  & .progress-bar {
+    background-color: #852d18;
+  }
+
+  & .card-header {
+    background-color: #fad2a8;
+    border-color: coral;
+  }
+}

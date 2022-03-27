@@ -1,11 +1,11 @@
 .header {
     --header-link-marker:#123776;
     --header-link-color: #123776;
-    --header-border: 1px solid #e6e6e6;
+    --header-border: 1px solid #f4a34f;
     --header-box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
                          rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     --header-button-border: 2px solid #b3b3b3;
-    --header-bg-color: white;
+    --header-bg-color: #f4b370;
 
     position: relative;
     height: 3.5rem;
@@ -17,7 +17,7 @@
         justify-content: space-between;
         align-items: center;
         background-color: var(--header-bg-color);
-        border: var(--header-border);
+        border-bottom: var(--header-border);
         padding: 0 1rem;
     }
 

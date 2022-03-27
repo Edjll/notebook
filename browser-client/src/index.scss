@@ -1,16 +1,9 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: var(--font-family-comfortaa-medium);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--bg-color);
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
 }
 
 @font-face {
@@ -50,4 +43,67 @@ code {
   --profile-sidebar-button-hover-color: #9d1723;
 
   --bg-color: #f3f3f3;
+}
+
+.btn {
+  background-color: #852d18 !important;
+  border-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+
+  &:hover, &:active, &:focus {
+    background-color: #943c25 !important;
+    border-color: transparent;
+    color: white;
+  }
+}
+
+.form-check-input {
+
+  &:focus {
+    box-shadow: none !important;
+  }
+
+  &:checked {
+    background-color: #852d18;
+    border-color: transparent;
+  }
+}
+
+.form-control, .form-select {
+  box-shadow: none !important;
+  border-color: #e4c099 !important;
+}
+
+.input-group-text {
+  background-color: #f4c28c;
+  border-color: #e4c099;
+}
+
+.card {
+  transition: opacity .5s;
+  border-color: #f6c38d;
+  background-color: antiquewhite;
+
+  & .card-header {
+    background-color: #fad2a8;
+    border-color: coral;
+  }
+}
+
+.form-card {
+  max-width: 60rem;
+  width: 100%;
+
+  & p {
+    margin: 0;
+  }
+}
+
+.btn-close {
+  padding: .75rem 1rem !important;
+}
+
+.alert {
+  padding: .5rem 1rem;
 }
